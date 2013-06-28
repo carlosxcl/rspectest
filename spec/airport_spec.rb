@@ -40,7 +40,7 @@ describe Airport do
     # This will require stubbing to stop the random return of the weather.
     # If the airport has a weather condition of stormy,
     # the plane can not land, and must not be in the airport
-    # context 'weather conditions' do
+    context 'weather conditions' do
 
     it 'a plane cannot take off when there is a storm brewing' do
       if @weather = "Stormy" && airport.take_off
@@ -53,6 +53,7 @@ describe Airport do
     end
     end
   end
+end
 
 
 # When we create a new plane, it should have a "flying" status, thus planes can not be created in the airport.
@@ -98,8 +99,11 @@ describe "The grand finale (last spec)" do
     airport.current_status.should eq 0
   end
 
-  it 'planes cannnot take off during storm'
-
+  it 'planes cannnot take off during storm' do
+      if @weather = "Stormy" && airport.take_off
+      airport.weather_control.should eq "You can't take off, storm coming"
+    end
+    end
 
 end
 end

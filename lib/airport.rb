@@ -8,7 +8,6 @@ class Airport
     @capacity = []
   end
 
-
   def land_plane
     @capacity << "plane"
   end
