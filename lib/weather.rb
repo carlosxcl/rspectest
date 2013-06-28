@@ -6,7 +6,7 @@ module Weather
 end
 
   def sunny?
-    if @weather.sample = "Sunny"
+    if @weather.sample = ["Sunny"]
       weather = "Sunny"
   end
 end

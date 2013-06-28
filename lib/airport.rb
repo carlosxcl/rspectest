@@ -14,7 +14,7 @@ class Airport
   end
 
   def take_off
-    @capacity.delete(["plane"])
+    @capacity.pop
   end
 
   def current_status
@@ -23,16 +23,17 @@ class Airport
 
   def limit_control
     if @capacity.size == 6 && land_plane
-      print "Sorry, you can't land. The airport is full"
+       "Sorry, you can't land. The airport is full"
     else
       land_plane
   end
 
   def weather_control
     if @weather = "Stormy" && take_off
-      print "You can't take off, storm coming"
+       "You can't take off, storm coming"
     else
-      take_off
+      @weather = "Stormy" && land_plane
+       "You can't land, storm coming"
   end
 
 end

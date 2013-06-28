@@ -14,20 +14,22 @@ describe Airport do
   context 'taking off and landing' do
 
     it 'a plane can land' do
-    airport.land_plane.should eq ["plane"]
+      airport.land_plane.should eq ["plane"]
     end
 
     it 'a plane can take off' do
-    airport.land_plane
-    airport.take_off.should eq nil
+      airport.land_plane
+      airport.current_status.should eq 1
+      airport.take_off
+      airport.current_status.should eq 0
     end
   end
 
   context 'traffic control' do
     it 'a plane cannot land if the airport is full' do
-    6.times {airport.land_plane}
-    airport.limit_control
-    airport.land_plane.should eq "Sorry, you can't land. The airport is full"
+      airport.limit_control
+      6.times {airport.land_plane}
+      airport.land_plane.should eq "Sorry, you can't land. The airport is full"
     end
   end
 
@@ -41,11 +43,13 @@ describe Airport do
     # context 'weather conditions' do
 
     it 'a plane cannot take off when there is a storm brewing' do
-    if @weather = "Stormy" && airport.take_off
-    airport.weather_control.should eq "You can't take off, storm coming"
+      if @weather = "Stormy" && airport.take_off
+      airport.weather_control.should eq "You can't take off, storm coming"
     end
 
     it 'a plane cannot land in the middle of a storm' do
+      if @weather = "Stormy" && airport.land_plane
+      airport.weather_control.should eq "You can't land, storm coming"
     end
     end
   end
@@ -83,15 +87,21 @@ end
 # Be careful of the weather, it could be stormy!
 # Check when all the planes have landed that they have the right status "landed"
 # Once all the planes are in the air again, check that they have the status of flying!
-describe "The gand finale (last spec)" do
+describe "The grand finale (last spec)" do
   let(:plane) { Plane.new }
   let(:airport) {Airport.new}
 
   it 'all planes can land and all planes can take off' do
     6.times {airport.land_plane}
+    airport.current_status.should eq 6
     6.times {airport.take_off}
+    airport.current_status.should eq 0
   end
-end
 
+  it 'planes cannnot take off during storm'
+
+
+end
+end
 
 
