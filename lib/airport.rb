@@ -1,0 +1,3 @@
+class airport
+
+end
