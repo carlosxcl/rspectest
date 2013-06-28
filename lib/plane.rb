@@ -1,11 +1,23 @@
+require 'Weather'
+
 class Plane
 
- def land(airport)
+  include Weather
 
- end
+  def initialize
+    @flying = true
+  end
 
- def landed?
-  true
- end
+  def flying
+    @flying
+  end
+
+  def land!
+    @flying = false
+  end
+
+  def take_off!
+    @flying = true
+  end
 
 end
